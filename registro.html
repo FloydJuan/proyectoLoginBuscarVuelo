@@ -1,0 +1,28 @@
+<HTML>
+	<HEAD>
+		<title>¡REGISTRATE!</title>
+		<link rel="stylesheet" href="static/estiloR.css">
+	</HEAD>
+	<BODY>
+		<center> <h1>REGISTRATE!</h1> </center>
+		{% block body %}
+			<form action="{{ url_for('registrar') }}" method="POST">
+			<label for ="nombre">ingrese nombre de usuario:</label>
+			<input type="" placeholder="nombre de usuario" id="nombre" name="nombre">
+			<br><br>
+			<label for ="password">ingrese una password:</label>
+			<input type="password" placeholder="password" id="password" name="password">
+			<br><br>
+			<center>
+			<input type="submit" value="enviar informacion">
+		    </center>
+			<center>
+			<a href="paginaWeb.html">Pagina Principal</a>
+			</center>
+			<center>
+			<a href="vuela.html">Vuela!</a>
+			</center>
+			</form>
+		{% endblock %}
+	</BODY>
+</HTML>

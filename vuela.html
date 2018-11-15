@@ -1,0 +1,31 @@
+<HTML>
+	<HEAD>
+		<title></title>
+		<link rel="stylesheet" href="static/estiloP.css">
+	</HEAD>
+	<BODY>
+	{% block body %}
+		<!--titulo #1-->
+		<center> <h1>VUELA!</h1> </center>
+		<form method="POST" action="/vuela">
+			<label for ="vuelo">ciudad origen:</label>
+			<input type="text" placeholder="origen" id="vuelo" name="vuelo">
+			<label for ="regreso">ciudad llegada:</label>
+			<input type="text" placeholder="regreso" id="regreso" name="regreso">
+			<label for ="aerolinea">aerolinea:</label>
+			<input type="text" placeholder="aerolinea" id="areolinea" name="aerolinea">
+			<input type="submit" value="buscar vuelo">
+			<table>
+			{% for i in range (0,entries.numero) %}
+			<tr>
+			<td> {{entries["vuelos"][i]}} </td>
+			</tr>
+			{% endfor %}
+			</table>
+			<center>
+			<a href="paginaWeb.html">Pagina Principal</a>
+			</center>
+	{% endblock %}
+		</form>
+	</BODY>
+</HTML>
