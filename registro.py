@@ -18,6 +18,7 @@ filename = ""
 
 @app.route('/iniciarsesion.html',methods=["GET","POST"])
 def inicio():
+    global usuario
     res='iniciarsesion.html'
     if(request.method=='POST'):
         usr= request.form['usuario']
@@ -31,9 +32,8 @@ def inicio():
         arc.close()
         if(usr in Dic):
             if(Dic[usr]==con):
-                res='vuela.html'
-            
-        
+                usuario=usr
+                res='vuela.html'          
     entries={}
     entries["numero"]=0
     return render_template(res,entries=entries)
@@ -62,9 +62,11 @@ def registrar():
             arc.write(i+"/"+dic[i]+"\n")
         arc.close()
     return render_template('registro.html',entries={})
+
 @app.route('/',methods=["GET","POST"])
 def paginaWeb():
     return render_template('paginaWeb.html')
+
 @app.route('/paginaWeb.html',methods=["GET","POST"])
 def paginaWeb2():
     return render_template('paginaWeb.html')
@@ -106,7 +108,51 @@ def imprimirVuelos():
                 entries["vuelos"].append(linea)
         entries["numero"]=len(entries["vuelos"])
     return render_template('vuela.html', entries=entries)
+
+@app.route('/reservas.html',methods=['GET','POST'])
+def Tusreservas():
+    entries={}
+    entries["numero"]=0    
+    return render_template('reservas.html',entries=entries)
+
+
+
+@app.route('/reserva',methods=['GET','POST'])
+def buscarReserva():
+    global usuario
+    arch=open("reservas.txt","w")
+    if(request.method== 'POST'):
+        reservas=request.form['reservas']
+    arch.write(usuario+'/'+str(reservas)+ '\n')
+    arch.close()
+    entries={}
+    entries["numero"]=0
+    
+    
+    return render_template('vuela.html',entries=entries)
+
+@app.route('/imprimirReservas',methods=['GET','POST'])
+def imprimirReservas():
+    if(request.method=='POST'):
+        reservados=[]
+        entries={"reservas":[]}
+        reservas=open("reservas.txt","r")
+        linea=reservas.readlines()
+        for i in linea:
+            reservados.append(i)
+            entries["reservas"].append(i)
+        entries["numero"]=len(entries["reservas"])
+    return render_template('reservas.html', entries=entries)
+    
+
 if __name__ == '__main__':
     app.run()
+
+
+
+
+
+
+
     
         

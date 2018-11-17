@@ -1,0 +1,30 @@
+<HTML>
+	<HEAD>
+		<title>¡RESERVAS!</title>
+		<link rel="stylesheet" href="static/estiloRE.css">
+	</HEAD>
+	<BODY>
+		<center> <h1>RESERVAS!</h1> </center>
+		{% block body %}
+			<form method="POST" action="imprimirReservas">
+			<label> Tus reservas son:</label>
+			<center>
+			<input type="submit" value="imprimir tus reservas" id="nombre" name="nombre">
+			<table>
+			<tr>
+			{% for i in range (0,entries.numero) %}
+			<td> {{entries["reservas"][i]}} </td>
+		    </tr>
+		    {% endfor %}
+		    </table>
+			</center>
+			<a href="paginaWeb.html">Pagina Principal</a>
+			</center>
+			<center>
+			<br></br>
+			<a href="vuela.html">Vuela!</a>
+			</center>
+			</form>
+		{% endblock %}
+	</BODY>
+</HTML>

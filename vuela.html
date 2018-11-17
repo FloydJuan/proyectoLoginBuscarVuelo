@@ -16,14 +16,20 @@
 			<input type="text" placeholder="aerolinea" id="areolinea" name="aerolinea">
 			<input type="submit" value="buscar vuelo">
 			<table>
-			{% for i in range (0,entries.numero) %}
+		</form>	
 			<tr>
+			{% for i in range (0,entries.numero) %}
+			<form method='POST' action=/reserva>
+			 <td><input type="submit" value="reserva ya!" action="/reserva"> </td> 
+			<input type="hidden" value="{{entries["vuelos"][i]}}" name="reservas">
 			<td> {{entries["vuelos"][i]}} </td>
+			</form>
 			</tr>
 			{% endfor %}
 			</table>
 			<center>
 			<a href="paginaWeb.html">Pagina Principal</a>
+			<a href="reservas.html">Tus reservas</a>
 			</center>
 	{% endblock %}
 		</form>
